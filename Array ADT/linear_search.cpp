@@ -15,14 +15,14 @@ void Display(struct Array arr){
     }
 }
 
-int Swap(int a , int b)
+void Swap(int *a , int *b)
 {
     int temp;
-    temp=a;
-    a=b;
-    b=temp;
+    temp=*a;
+    *a=*b;
+    *b=temp;
 
-    return a,b;
+    
 
 }
 
@@ -38,18 +38,56 @@ int L_search(struct Array arr, int n)
 }
 
 //if we want to search again-Improvement 1
-int L_search(struct Array *arr)
+int Limp_search(struct Array *arr,int n)
+{
+    for(int i=0;i<arr->length;i++){
+        if(arr->A[i]==n)
+        {
+          Swap(&arr->A[i-1],&arr->A[i]); 
+          return i-1; 
+        }
+        
+    }
+    return -1;
+    
+}
+
+//if we want more improvement - move to start
+int LHimp_search(struct Array *arr, int n)
+{
+    for(int i=0; i<arr->length; i++)
+    {
+        if(arr->A[i]==n)
+        {
+            Swap(&arr->A[i],&arr->A[0]); 
+            return i;
+        }
+    }
+    return -1;
+}
 
 
 
 
-
+//here n is the key i.e element that is to be searched
 
 int main()
 {
     struct Array arr={{1,2,3,4,5},10,5};
     Display(arr);
     cout<<endl;
+
+    //improvement 1, shift frequently searched element to back
+
+    cout<<LHimp_search(&arr, 4);
+    cout<<endl;
+    Display(arr);
+
+    //improvement 2, shift frequently searched elemnt to front
         
-    cout<<L_search(&arr, 4);
+    cout<<Limp_search(&arr, 4);
+    cout<<endl;
+    Display(arr);
+
+    
 }
