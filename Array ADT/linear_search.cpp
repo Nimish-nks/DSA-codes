@@ -21,9 +21,7 @@ void Swap(int *a , int *b)
     temp=*a;
     *a=*b;
     *b=temp;
-
-    
-
+  
 }
 
 //normal linear search
