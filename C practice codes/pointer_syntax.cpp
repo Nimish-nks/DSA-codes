@@ -12,6 +12,7 @@ int main()
     
     printf("%d \n",a);
     printf("%d",*p);  //to print pointer use star, this prints value stored at address p
+    printf("%d ",p); //to print value as well as address stored at pointer p
     free(m); //to delete memory
     
 
